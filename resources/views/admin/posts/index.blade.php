@@ -14,7 +14,7 @@
                         <div class="card-body">
                           <h5 class="card-title">{{ Str::substr($post->title, 0, 50) }} ...</h5>
                           <p class="card-text">{{ Str::substr($post->content, 0, 100) }} ...</p>
-                          <a href="#" class="btn btn-primary">Edit</a>
+                          <a href="{{ route('admin.posts.show', ['post' => $post->id]) }}" class="btn btn-primary">Details</a>
                         </div>
                     </div>
                 </div>
