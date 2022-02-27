@@ -114,14 +114,15 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //
-
-        $form_data = $request->all();
-        $form_data['slug'] = $this->getUniqueSlugFromPostTitle($form_data['title']);
-        
-        $request->validate($this->ValidationRules());
-
         $post_to_update = Post::findOrFail($id);
 
+        $form_data = $request->all();
+        
+        if($form_data['title'] != $post_to_update->title){
+            $form_data['slug'] = $this->getUniqueSlugFromPostTitle($form_data['title']);
+        }
+        
+        $request->validate($this->ValidationRules());
         
         $post_to_update->update($form_data);
 
