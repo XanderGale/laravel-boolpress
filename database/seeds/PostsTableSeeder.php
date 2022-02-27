@@ -17,9 +17,9 @@ class PostsTableSeeder extends Seeder
         //
         for ($i = 0; $i < 10; $i++ ){
             $new_post = new Post();
-            $new_post->title = $faker->realTextBetween(10, 255);
-            $new_post->content = $faker->paragraph(2, 6);
-            $new_post->slug = $slug = Str::of($new_post->title)->slug('-');
+            $new_post->title = $faker->paragraph(2, 5);
+            $new_post->content = $faker->paragraph(10, 20);
+            $new_post->slug = Str::of($new_post->title)->slug('-');
             $new_post->save();
         }
     }
