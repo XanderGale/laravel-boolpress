@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
-use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -119,7 +118,7 @@ class PostController extends Controller
         $form_data = $request->all();
         
         if($form_data['title'] != $post_to_update->title){
-            $form_data['slug'] = $this->getUniqueSlugFromPostTitle($form_data['title']);
+            $form_data['slug'] = Post::getUniqueSlugFromPostTitle($form_data['title']);
         }
         
         $request->validate($this->ValidationRules());
@@ -139,6 +138,12 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+
+        $post_to_delete = Post::findOrFail($id);
+
+        $post_to_delete->delete();
+
+        return redirect()->route('admin.posts.index');
     }
 
     protected function ValidationRules(){
@@ -146,26 +151,5 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required|max:60000',
         ];
-    }
-
-    protected function getUniqueSlugFromPostTitle($title){
-        // Assegno uno slug unico
-        $slug = Str::of($title)->slug('-');
-        // Creo una base dello slug
-        $slug_base = $slug;
-
-        // Verifico se lo slug esiste già all'interno del database
-        $slug_already_exists = Post::where('slug', '=', $slug)->first();
-        // Creo un contatore
-        $counter = 1;
-
-        // Controllo che lo slug non esista nel db, e incremento il numero finale nel caso fosse già esistente
-        while($slug_already_exists){
-            $slug = $slug_base . '-' . $counter;
-            $slug_already_exists = Post::where('slug', '=', $slug)->first();
-            $counter++;
-        }
-
-        return $slug;
     }
 }

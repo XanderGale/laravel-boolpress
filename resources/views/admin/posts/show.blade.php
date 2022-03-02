@@ -14,6 +14,14 @@
                           <p class="card-text">{{ $post->content }}</p>
                           <p style="margin: 30px 0; color: blue;"><strong style="color: black;">Post slug:</strong> {{ $post->slug }}</p>
                           <a href="{{ route('admin.posts.edit', ['post' => $post->id ]) }}" class="btn btn-primary">Edit</a>
+                          <div style="display: inline-block; margin-left: auto;">
+                            <form action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}" method="post" >
+                                @csrf
+                                @method('DELETE')
+                                  <button onclick="return confirm('Sicuro di cancellare definitivamente il post?')" class="btn btn-danger">Delete</button>
+                              </form>
+                          </div>
+                          
                         </div>
                     </div>
                 </div>
