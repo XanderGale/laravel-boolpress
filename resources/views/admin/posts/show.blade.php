@@ -10,11 +10,14 @@
                     <div class="card" style="width: 100%;">
                         {{-- <img class="card-img-top" src="..." alt="Card image cap"> --}}
                         <div class="card-body">
-                          <h5 class="card-title">{{ $post->title }}</h5>
-                          <p class="card-text">{{ $post->content }}</p>
-                          <p style="margin: 30px 0; color: blue;"><strong style="color: black;">Post slug:</strong> {{ $post->slug }}</p>
-                          <a href="{{ route('admin.posts.edit', ['post' => $post->id ]) }}" class="btn btn-primary">Edit</a>
-                          <div style="display: inline-block; margin-left: auto;">
+                            @if ($post->category)
+                            <p class="card-text float-right">{{ $post->category->name }}</p>
+                            @endif
+                            <h5 class="card-title">{{ $post->title }}</h5>
+                            <p class="card-text">{{ $post->content }}</p>
+                            <p style="margin: 30px 0; color: blue;"><strong style="color: black;">Post slug:</strong> {{ $post->slug }}</p>
+                            <a href="{{ route('admin.posts.edit', ['post' => $post->id ]) }}" class="btn btn-primary">Edit</a>
+                            <div style="display: inline-block; margin-left: auto;">
                             <form action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}" method="post" >
                                 @csrf
                                 @method('DELETE')
