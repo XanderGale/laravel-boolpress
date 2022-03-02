@@ -15,7 +15,14 @@
                             @endif
                             <h5 class="card-title">{{ $post->title }}</h5>
                             <p class="card-text">{{ $post->content }}</p>
-                            <p style="margin: 30px 0; color: blue;"><strong style="color: black;">Post slug:</strong> {{ $post->slug }}</p>
+                            <p style="font-weight: bolder" class="d-inline-block">Tags:</p>
+                            @forelse ($post->tags as $tag)
+                                <span>{{ $tag->name }}{{ $loop->last ? '.' : ',' }}</span>
+                            @empty
+                                <span>Nessuno.</span>
+                            @endforelse
+                            <p class="card-text"></p>
+                            <p style="margin: 15px 0; color: blue;"><strong style="color: black;">Post slug:</strong> {{ $post->slug }}</p>
                             <a href="{{ route('admin.posts.edit', ['post' => $post->id ]) }}" class="btn btn-primary">Edit</a>
                             <div style="display: inline-block; margin-left: auto;">
                             <form action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}" method="post" >

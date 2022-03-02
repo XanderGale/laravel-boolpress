@@ -38,7 +38,21 @@
                     <label for="content" class="form-label">Post Content</label>
                     <textarea class="form-control" name="content" id="content" cols="30" rows="10" placeholder="Inserisci contenuto del post">{{ old('content') }}</textarea>
                 </div>
+
+                <div class="mb-3">
+                    <h5>Tags:</h5>
+                    @foreach ($tags as $tag)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $tag->id }}" id="tag-{{ $tag->id }}" name="tags[]">
+                            <label class="form-check-label" for="tag-{{ $tag->id }}">
+                                {{ $tag->name }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+
                 <button type="submit" class="btn btn-primary">Crea</button>
+                <a class="btn btn-secondary" onclick="return confirm('Sicuro di volere tornare indietro? I cambiamenti effettuati non verranno salvati.')" href="{{ route('admin.posts.index') }}">Annulla</a>
               </form>
               
         </section>
