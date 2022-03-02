@@ -58,7 +58,7 @@ class PostController extends Controller
 
 
         // Assegno il valore al db dello slug
-        $new_post->slug = $this->getUniqueSlugFromPostTitle($form_data['title']);
+        $new_post->slug = Post::getUniqueSlugFromPostTitle($form_data['title']);
 
         $new_post->save();
 
