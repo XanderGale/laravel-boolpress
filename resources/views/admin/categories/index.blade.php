@@ -5,13 +5,11 @@
 <div class="container">
     <h1>Lista delle categorie:</h1>
 
-    <ul>
+    <div class="list-group">
         @foreach($categories as $category)
-        <li>
-            <a href="{{ route('admin.category_info', ['slug' => $category->slug ]) }}">{{ $category->name }}</a>
-        </li>
+            <a class="list-group-item list-group-item-action" href="{{ route('admin.category_info', ['slug' => $category->slug ]) }}">{{ $category->name }}</a>
         @endforeach
-    </ul>
+    </div>
 
 </div>
 

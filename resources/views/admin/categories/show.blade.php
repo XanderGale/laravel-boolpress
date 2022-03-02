@@ -1,17 +1,31 @@
 @extends('layouts.dashboard')
 
 @section('content')
+    <div class="container">
+        <section>
+            <h3 style="margin: 10px">Lista dei post della categoria "{{ $category->name }}":</h3>
+            <div class="row row-cols-3">
 
-<div class="container">
-    <h1>Post relativi alla categoria {{ $category->name }}:</h1>
+                @forelse ($category_posts as $post)
 
-    @forelse ($category_posts as $category_post)
-        <h5>{{$category_post->title}}</h5>
-        <a href="{{ Route('admin.posts.show', ['post' => $category_post->id]) }}">Vai al post</a>
-    @empty
-        <h5>No posts found</h5>
-    @endforelse
+                <div class="col">
+                    <div class="card" style="margin: 10px">
+                        {{-- <img class="card-img-top" src="..." alt="Card image cap"> --}}
+                        <div class="card-body">
+                          <h5 class="card-title">{{ Str::substr($post->title, 0, 50) }} ...</h5>
+                          <p class="card-text">{{ Str::substr($post->content, 0, 100) }} ...</p>
+                          <a href="{{ route('admin.posts.show', ['post' => $post->id]) }}" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
 
-</div>
+                @empty
 
+                <h5>Non ci sono post con questa categoria</h5>
+
+                @endforelse
+            
+            </div>
+        </section>
+    </div>
 @endsection
