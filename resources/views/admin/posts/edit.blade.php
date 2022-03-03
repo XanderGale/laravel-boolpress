@@ -43,7 +43,7 @@
                     <h5>Tags:</h5>
                     @foreach ($tags as $tag)
                         <div class="form-check">                          
-                            @if ($errrors->any())
+                            @if ($errors->any())
                                 {{-- Se ci sono errori di validazione mi affido all'old per mettere o non mettere il checked --}}
                                 <input class="form-check-input" type="checkbox" value="{{ $tag->id }}" id="tag-{{ $tag->id }}" name="tags[]" {{ in_array($tag->id, old('tags', [] )) ? 'checked' : '' }}>
                             @else
