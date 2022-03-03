@@ -11,15 +11,15 @@
                         {{-- <img class="card-img-top" src="..." alt="Card image cap"> --}}
                         <div class="card-body">
                             @if ($post->category)
-                            <p class="card-text float-right">{{ $post->category->name }}</p>
+                            <p class="badge badge-dark card-text float-right">{{ $post->category->name }}</p>
                             @endif
                             <h5 class="card-title">{{ $post->title }}</h5>
                             <p class="card-text">{{ $post->content }}</p>
                             <p style="font-weight: bolder" class="d-inline-block">Tags:</p>
                             @forelse ($post->tags as $tag)
-                                <span>{{ $tag->name }}{{ $loop->last ? '.' : ',' }}</span>
+                                <span class="badge badge-light" >{{ $tag->name }}{{ $loop->last ? '.' : ',' }}</span>
                             @empty
-                                <span>Nessuno.</span>
+                                <span class="badge badge-light">Nessuno.</span>
                             @endforelse
                             <p class="card-text"></p>
                             <p style="margin: 15px 0; color: blue;"><strong style="color: black;">Post slug:</strong> {{ $post->slug }}</p>

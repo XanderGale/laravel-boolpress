@@ -110,10 +110,12 @@ class PostController extends Controller
         //
         $post_to_update = Post::findOrFail($id);
         $categories = Category::all();
+        $tags = Tag::all();
 
         $data = [
             'post' => $post_to_update,
             'categories' => $categories,
+            'tags' => $tags,
         ];
 
         return view('admin.posts.edit', $data);
