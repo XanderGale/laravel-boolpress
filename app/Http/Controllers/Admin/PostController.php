@@ -143,6 +143,14 @@ class PostController extends Controller
         
         $post_to_update->update($form_data);
 
+        // Sincronizzo i tags SE SELEZIONATI
+        if(isset($form_data['tags'])){
+            $post_to_update->tags()->sync($form_data['tags']);
+        } else {
+            // Se non selezionati rimuovo tutti i tags mettendogli un array vuoto
+            $post_to_update->tags()->sync([]);
+        }
+
         return redirect()->route('admin.posts.show', ['post' => $post_to_update->id]);
 
     }
