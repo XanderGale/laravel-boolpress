@@ -7,7 +7,7 @@
 
             <div class="row-cols-1">
                     
-                <div v-for="post in posts" :key="post.id" class="card mt-3 mb-3">
+                <div v-for="post in posts" :key="post.id">
                     <!-- <img src="..." class="card-img-top" alt="..."> -->
                     <!-- <div class="card-body">
                         <h5 class="card-title">{{ post.title }}</h5>

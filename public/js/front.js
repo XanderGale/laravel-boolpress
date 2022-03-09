@@ -2672,7 +2672,7 @@ var render = function () {
         "div",
         { staticClass: "row-cols-1" },
         _vm._l(_vm.posts, function (post) {
-          return _c("div", { key: post.id, staticClass: "card mt-3 mb-3" }, [
+          return _c("div", { key: post.id }, [
             _c("div", { staticClass: "card mb-3" }, [
               _c("div", { staticClass: "row g-0" }, [
                 _c("div", { staticClass: "col-md-4" }),
